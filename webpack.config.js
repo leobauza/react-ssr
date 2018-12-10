@@ -1,6 +1,5 @@
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-// const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   // Sets process.env.NODE_ENV by configuring DefinePlugin
@@ -11,8 +10,6 @@ module.exports = {
   },
   // source mapping style https://webpack.js.org/configuration/devtool/
   devtool: 'cheap-module-eval-source-map',
-  // @TODO should apply only to server
-  // externals: [nodeExternals()],
   // determines the name and place for your output bundles
   output: {
     filename: 'assets/[name].bundle.js',
