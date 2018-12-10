@@ -6,6 +6,7 @@
 - [ ] Set up server rendering (w/ webpack)
 - [ ] Set up typescript
 - [ ] Set up tailwind
+- [ ] Set up hot module reloading
 - [ ] Webpack Tree Shaking & Code Splitting (without using React Loadable or Loadable Components)
 - [ ] [React Loadable](https://github.com/jamiebuilds/react-loadable) vs [Loadable Components](https://github.com/smooth-code/loadable-components)
 - [ ] Set up bundle analyzer (and understand it)
