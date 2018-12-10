@@ -11,6 +11,7 @@
 - [ ] Set up bundle analyzer (and understand it)
 - [ ] Production Build (react chunk, [css](https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production))
 - [ ] Check out BabelMinifyWebpackPlugin and ClosureCompilerPlugin
+- [ ] Add Routing with [reach router](https://reach.tech/router) client and server side
 - [ ] Write a bunch of blog posts on what was learned
 - [ ] Deploy to heroku
 
