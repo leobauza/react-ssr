@@ -1,18 +1,18 @@
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const nodeExternals = require('webpack-node-externals');
-
+// const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  // @TODO comment: what does this do?
+  // Sets process.env.NODE_ENV by configuring DefinePlugin
   mode: 'development',
   // gives a name to your bundle { name: .... }
   entry: {
     app: './src/client.js'
   },
-  // @TODO comment: what does this do
+  // source mapping style https://webpack.js.org/configuration/devtool/
   devtool: 'cheap-module-eval-source-map',
-  externals: [nodeExternals()],
+  // @TODO should apply only to server
+  // externals: [nodeExternals()],
   // determines the name and place for your output bundles
   output: {
     filename: 'assets/[name].bundle.js',
@@ -22,7 +22,8 @@ module.exports = {
     // deletes the public folder for fresh builds
     new CleanWebpackPlugin(['public']),
   ],
-  // @TODO comment: what does this do?
+  // sets rules for processing different files being 'imported'
+  // (or loaded) into js files
   module: {
     rules: [
       {

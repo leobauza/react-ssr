@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 
+if (process.env.NODE_ENV !== 'production') {
+  console.log('dev!')
+} else {
+  console.log('production!')
+}
 
 class Layout extends Component {
   state = {

@@ -30,7 +30,7 @@ function htmlTemplate(reactDom) {
 
         <body>
             <div id="app">${reactDom}</div>
-            <!-- <script src="./assets/app.bundle.js"></script> -->
+            <script src="./assets/app.bundle.js"></script>
         </body>
         </html>
     `
