@@ -1,82 +1,18 @@
 # Server rendered react using babel register and no webpack bundling for the server
 
-First, here is every package we are including and what they do to get our SSR React app running.
+## What are we building here?
 
-### express:
+The end result of this app is a counter that is initially rendered server side and then updated with client side JavaScript.
 
-Node.js web framework used to write the simple app that runs on the server. (https://expressjs.com/)
+This represents a minimal example of a server side rendered (SSR) React app. This app is not production ready, it's not the only way to set up SSR, and is solely meant as an introduction to the concept of SSR React.
 
-### path:
-
-A node utility for working with file paths. (https://nodejs.org/api/path.html)
-
-### react:
-
-A framework used to build UIs. (https://reactjs.org/)
-
-### react-dom:
-
-Connects React to the DOM and is used on the client side. (https://www.npmjs.com/package/react-dom)
-
-### @babel/core:
-
-Used to convert the latest and greatest javascript code to something a Node.js server or older browsers can understand. This package is used under the hood by `babel-loader` within webpack and by `@babel/register` in `index.js` and is never directly used in this setup (https://babeljs.io/docs/en/next/babel-core.html)
-
-### @babel/plugin-proposal-class-properties:
-
-This package allows for the use of static class properties (https://www.npmjs.com/package/@babel/plugin-proposal-class-properties) ie, the ability to write something like this:
-
-```js
-class MyClass extends React.Component {
-  state = {
-    state: 'is',
-    a: 'static',
-    property: 'yay'
-  }
-
-  ...
-}
-```
-
-This is arguably an unnecesary package but this is a nicer way of writing classes. Alternatively one could omit static class properties and achieve the same results.
-
-### @babel/preset-env:
-
-This is the preset that `@babel/core` uses to transform the latest JavaScript to a target environment or environments. In our case the targets are older browsers (that support ES5) and a Node.js server (https://babeljs.io/docs/en/babel-preset-env)
-
-### @babel/preset-react:
-
-This is the preset that `@babel/core` uses to transform our React code (ie JSX) to our target environments (mentioned above.) (https://babeljs.io/docs/en/babel-preset-react)
-
-### @babel/register:
-
-This is used on the entry point (`index.js`) to transform code that is being `required()` without having to use webpack to bundle and transform the code (https://babeljs.io/docs/en/babel-register)
-
-### babel-loader:
-
-A webpack loader that will use our babel configurations (set in `.babelrc`) to transform the JavaScript files using the latest JavaScript to JavaScript that can be understood by older browsers (https://www.npmjs.com/package/babel-loader)
-
-### clean-webpack-plugin:
-
-A webpack plugin that deletes everything in our public folder before building new bundles. This is done so the folder doesn't grown indefinitely. (https://github.com/johnagan/clean-webpack-plugin)
-
-### nodemon:
-
-This will run our Node.js server and monitor for changes we make while developing and restart the server when those changes are made (https://nodemon.io/)
-
-### webpack:
-
-Webpack manages our build pipeline. In this project it is taking the code in the `client.js` file and using the `babel-loader` to convert it into code older browsers can understand. (https://webpack.js.org/)
-
-### webpack-cli:
-
-This is webapack's command line interface tool. In this project is used by the `yarn start` script to watch files for changes and re-bundle files. (https://webpack.js.org/api/cli/)
+There are more robust solutions that make working with SSR code easier, and solve many of the problems that an SSR app would run into. Some frameworks to explore are [NEXT.js](https://nextjs.org/) and [Gatsby](https://www.gatsbyjs.org/).
 
 ## Prerequisites
 
-This requires understanding what `yarn` and `npm` are. It also requires a basic understanding of [Webpack](https://webpack.js.org/) and of [React](https://reactjs.org/). For a more in depth look at a ssr webpack setup read: [How to configure Webpack for ssr React?](#TODO-WRITE-WEBPACK-SETUP-README)
+This requires understanding what `yarn` and `npm` are. It also requires a basic understanding of [Webpack](https://webpack.js.org/) and of [React](https://reactjs.org/).
 
-<!-- @TODO something about why webpack and babel are needed here -->
+In this app Webpack and Babel are used to transform the latest JavaScript in the `client.js` file into a bundle that the `server.js` file includes using `<script src="./assets/app.bundle.js"></script>`. Babel is also used in `index.js` via `require('@babel/register')` to avoid the need of a more complex Webapck setup. `@babel/register` transforms `server.js` to JavaScript that can be understood by Node.js.
 
 ## The Parts
 
