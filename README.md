@@ -3,6 +3,7 @@
 ## Goals
 
 - [x] Set up server rendering (w/o webpack using babel-register)
+- [x] Server rendering with micro and serve
 - [ ] Set up server rendering (w/ webpack)
 - [ ] Set up typescript
 - [ ] Set up tailwind
@@ -13,6 +14,7 @@
 - [ ] Production Build (react chunk, [css](https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production))
 - [ ] Check out BabelMinifyWebpackPlugin and ClosureCompilerPlugin
 - [ ] Add Routing with [reach router](https://reach.tech/router) client and server side
+- [ ] TCP server... (https://github.com/dashersw/cote and https://gist.github.com/tedmiston/5935757)
 - [ ] Write a bunch of blog posts on what was learned
 - [ ] Deploy to heroku
 
