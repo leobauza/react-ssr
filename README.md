@@ -18,21 +18,42 @@ In this app Webpack (using babel-loader) is used to transform the latest JavaScr
 
 The most basic setup of a server side rendered React app includes 4 files that will be explained further below. They are the `client`, the `server`, a `component` that you want to render on the `server` and the `client`, and finally an entry point.
 
-## The Components
+## The Component
+
+In this example there is a `Counter` component defined in `/src/components/Counter.js`. The `Counter` renders a `h1` tag that shows where the counter is at:
+
+[screensot of the count goes here]
+
+The important parts to understand are that:
+
+1. The component has an initial state of `{ count: 0 }`
+2. The component renders an `h1` tag with the text `Count: <the current count>`
+3. Increasing the count doesn't start until _after_ the component did mount
+
+The reasons for using this `Counter` component for this example is that it can be initially rendered by the server and then the client side JavaScript can attach itself and update the state. In other words the server can output:
+
+```html
+...
+<h1>Count: 0</h1>
+...
+```
+
+And after JavaScript has loaded it can update the `0` every second.
 
 ## The Client
+
+
 
 ## The Server
 
 ## The Entry Point
 
-In this setup there is a `index.js` file at the root of the project that `requires` another files (`sever.js`) and uses [@babel/register](https://babeljs.io/docs/en/babel-register) to compile files on the fly.
+In this setup there is a `index.js` file at the root of the project that `requires('sever.js')` and uses [@babel/register](https://babeljs.io/docs/en/babel-register) to compile files on the fly.
 
-The `index.js` file is pretty simple and looks like this:
+The `index.js` file is pretty simple:
 
 ```js
 require('@babel/register')
 require('./src/server')
 ```
 
-Developers want to write code with the latest javascript features, however node.js doesn't understand all these new features. Developers may also want to use things like typescript or JSX which are a node.js server also does not understand. Babel translates these features (all code required from `server.js`) into code that the node.js server can understand through `@babel/register`.
