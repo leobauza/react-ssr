@@ -2,7 +2,7 @@ import express from 'express'
 import path from 'path'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import Layout from './components/Layout'
+import Counter from './components/Counter'
 
 /**
  * Create an express app
@@ -29,7 +29,7 @@ app.get('/*', (req, res) => {
    * `client.js`
    * (https://reactjs.org/docs/react-dom-server.html#rendertostring)
    */
-  const jsx = <Layout />
+  const jsx = <Counter />
   const reactDom = renderToString(jsx)
 
   /**

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Layout extends Component {
+class Counter extends Component {
   state = {
     count: 0
   }
@@ -12,7 +12,7 @@ class Layout extends Component {
   count = () => {
     this.setState(prevState => {
       return {
-        count: prevState.count + 10
+        count: prevState.count + 1
       }
     })
 
@@ -21,9 +21,9 @@ class Layout extends Component {
 
   render() {
     return (
-      <h1>SSReact: {this.state.count}</h1>
+      <h1>Count: {this.state.count}</h1>
     )
   }
 }
 
-export default Layout
+export default Counter

@@ -1,7 +1,7 @@
 import React from "react";
 import { hydrate } from "react-dom";
 
-import Layout from "./components/Layout";
+import Counter from "./components/Counter";
 
 const app = document.getElementById( "app" );
-hydrate( <Layout />, app );
+hydrate( <Counter />, app );

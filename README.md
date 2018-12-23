@@ -10,15 +10,13 @@ There are more robust solutions that make working with SSR code easier, and solv
 
 ## Prerequisites
 
-This requires understanding what `yarn` and `npm` are. It also requires a basic understanding of [Webpack](https://webpack.js.org/) and of [React](https://reactjs.org/).
+This requires understanding what [yarn](https://yarnpkg.com/en/) is. It also requires a basic understanding of [Webpack](https://webpack.js.org/), [React](https://reactjs.org/), and [Babel](https://babeljs.io/).
 
-In this app Webpack and Babel are used to transform the latest JavaScript in the `client.js` file into a bundle that the `server.js` file includes using `<script src="./assets/app.bundle.js"></script>`. Babel is also used in `index.js` via `require('@babel/register')` to avoid the need of a more complex Webapck setup. `@babel/register` transforms `server.js` to JavaScript that can be understood by Node.js.
+In this app Webpack (using babel-loader) is used to transform the latest JavaScript in the `client.js` file into a bundle that the `server.js` file includes using `<script src="./assets/app.bundle.js"></script>`. Babel is also used in `index.js` via `require('@babel/register')` to avoid the need of a more complex Webapck setup. `@babel/register` transforms `server.js` to JavaScript that can be understood by Node.js. Both `@babel/register` and the Webpack configuration use the `.babelrc` file to configure babel transformations.
 
 ## The Parts
 
 The most basic setup of a server side rendered React app includes 4 files that will be explained further below. They are the `client`, the `server`, a `component` that you want to render on the `server` and the `client`, and finally an entry point.
-
-
 
 ## The Components
 
