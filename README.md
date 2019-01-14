@@ -1,4 +1,4 @@
-# Server rendered react using babel register and no webpack bundling for the server
+# Server rendered React using babel register and no webpack bundling for the server
 
 ## What are we building here?
 
@@ -41,6 +41,18 @@ The reasons for using this `Counter` component for this example is that it can b
 And after JavaScript has loaded it can update the `0` every second.
 
 ## The Client
+
+On a standard client side app (CSA) the `render` method provided by the `react-dom` library is used to render a React element into the DOM in the supplied container. In this example that would look something like this:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import Counter from "./components/Counter";
+
+const app = document.getElementById( "app" );
+ReactDOM.render( <Counter />, app );
+```
+
 
 
 
