@@ -2,7 +2,7 @@
 
 ## What are we building here?
 
-The end result of this app is a counter that is initially rendered server side and then updated with client side JavaScript.
+The end result of this app is a counter that is initially rendered server side and then updated with client-side JavaScript.
 
 The goal is to minimize the parts needed to get the app up and running. Webpack is used to compile the client-side React code. Server side code is compiled on the fly with babel register. To run the app first start a webpack watch process with `yarn start` and then start the node server with `yarn server`.
 
@@ -16,9 +16,11 @@ This requires basic understanding of [yarn](https://yarnpkg.com/en/), [node](htt
 
 In this app Webpack (using babel-loader) is used to transform the latest JavaScript in the `client.js` file into a bundle that the `server.js` file includes using `<script src="./assets/app.bundle.js"></script>`. Babel is also used in `index.js` via `require('@babel/register')` to avoid the need of a more complex Webapck setup. `@babel/register` transforms `server.js` to JavaScript that can be understood by Node.js. Both `@babel/register` and the Webpack configuration use the `.babelrc` file to configure babel transformations.
 
+@TODO: link to the repo to see the finished product
+
 ## The Parts
 
-This basic setup of a server side rendered React app includes 4 files. The `client`, the `server`, a `component` that will be rendered on the `server` and then updated by the `client`, and an entry point. We will also need a `webpack.config.js` file to compile the client
+This basic setup of a server side rendered React app includes 4 files. The `client`, the `server`, a `component` that will be rendered on the `server` and then updated by the `client`, and an entry point. We will also need a `webpack.config.js` file to compile the `client` code.
 
 ## The Component
 
@@ -68,7 +70,7 @@ The `Counter` component is initially rendered by the `server`. The `client` side
 ...
 ```
 
-After the client side JavaScript has loaded it can update the count every second.
+After the client-side JavaScript has loaded it can update the count every second.
 
 ## The Server
 
@@ -146,11 +148,11 @@ function htmlTemplate(reactDom) {
 }
 ```
 
-The most importants things to note are that `renderToString` converts the component to an HTML string, we are only outputting html, and `<script src="./assets/app.bundle.js"></script>` is a webpack bundle of the compiled `client` code.
+The most importants things to note are that `renderToString` converts the component to an HTML string, we are only outputting html, and `<script src="./assets/app.bundle.js"></script>` is a webpack bundle of the compiled `client.js` code.
 
 ## The Client
 
-On a standard client side app (CSA) the `render` method provided by the `react-dom` package is probably being used to render a React element into the specified containe in the DOM. It would look something like this:
+On a standard client-side app (CSA) the `render` method provided by the `react-dom` package is probably being used to render a React element into the specified containe in the DOM. It would look something like this:
 
 ```js
 import React from 'react'
@@ -188,17 +190,17 @@ require('./src/server')
 
 `@babel/register` does the magic of converting the `server` js into something node.js can process and output. In this example we are only doing this to avoid any more complicated webpack configuration. You probably wouldn't do this in a real project, this is just a fast way to get this set up for the sake of demonstration.
 
-## Compiling the client code
+## Compiling `client.js`
 
-The entry point will take care of compiler server side code, but what about our client side code?
+The entry point will take care of compiler server side code, but what about our client-side code?
 
-Earlier in the `server` code I pointed out this line:
+Earlier in the `server.js` code I pointed out this line:
 
 ```
 <script src="./assets/app.bundle.js"></script>
 ```
 
-This adds script tag references the `client` code, however we can't just load the client code. First it needs to be compiled to something browser can understand. The webpack configuration file below takes the `client.js` file and converts it to the `app.bundle.js` file the app will use.
+This adds script tag references the cient-sde code, however we can't just load the `client.js`. First it needs to be compiled to something browser can understand. The webpack configuration file below takes the `client.js` file and converts it to the `app.bundle.js` file the app will use.
 
 ```js
 const path = require('path')
@@ -240,4 +242,65 @@ module.exports = {
   }
 }
 ```
+
+As mentioned in the comments in this file a `.babelrc` file is needed. It looks likes this:
+
+```json
+{
+  "presets": ["@babel/env", "@babel/react"],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}
+```
+
+@TODO: links to all those and brief explenations
+
+## Running the app
+
+After putting together all these parts our folder structure will looks something like this:
+
+```
+/src
+-- client.js
+-- server.js
+-- /components
+---- counter.js
+.babelrc
+index.js
+package.json
+webpack.config.js
+```
+
+The project dependencies are these (the best way to get these is to clone the repo @TODO: instructions on cloning the REPO):
+
+```json
+"dependencies": {
+  "express": "^4.16.4",
+  "path": "^0.12.7",
+  "react": "^16.6.3",
+  "react-dom": "^16.6.3"
+},
+"devDependencies": {
+  "@babel/core": "^7.2.0",
+  "@babel/plugin-proposal-class-properties": "^7.2.1",
+  "@babel/preset-env": "^7.2.0",
+  "@babel/preset-react": "^7.0.0",
+  "@babel/register": "^7.0.0",
+  "babel-loader": "^8.0.4",
+  "clean-webpack-plugin": "^1.0.0",
+  "webpack": "^4.27.1",
+  "webpack-cli": "^3.1.2",
+  "webpack-node-externals": "^1.7.2"
+}
+```
+
+Assuming the above structure and that all the packages have been installed we can create two scripts to run our app (in `package.json`):
+
+```json
+"scripts": {
+  "start": "webpack",
+  "server": "node index.js"
+}
+```
+
+Then in a terminal run `yarn start` and then `yarn server`. The first script will compile the `client.js` code and create the `public` folder containing `assets/app.bundle.js`. The second script will start the `node.js` server. Navigate to `localhost:3000` (this is where we told our `server.js` to start the server) and you should see the counter.
 
