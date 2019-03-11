@@ -14,12 +14,10 @@ const app = express()
  */
 app.use(express.static(path.resolve(__dirname, '../public')))
 
-
 /**
  * Create a route that matches any path entered on the url bar
  */
 app.get('/*', (req, res) => {
-
   /**
    * Convert JSX code to a HTML string that can be rendered server side with
    * `renderToString` a method provided by ReactDOMServer

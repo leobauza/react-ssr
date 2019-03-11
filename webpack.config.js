@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: [
     // deletes the public folder for fresh builds
-    new CleanWebpackPlugin(['public']),
+    new CleanWebpackPlugin(['public'])
   ],
   // sets rules for processing different files being 'imported'
   // (or loaded) into js files
