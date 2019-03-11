@@ -155,14 +155,12 @@ The most importants things to note are that `renderToString` converts the compon
 On a standard client-side app (CSA) the `render` method provided by the `react-dom` package is probably being used to render a React element into the specified containe in the DOM. It would look something like this:
 
 ```js
-import React from 'react'
-import { hydrate } from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import Counter from "./components/Counter";
 
-import Counter from './components/Counter'
-
-const app = document.getElementById('app')
-// Use hydrate instead of render to attach event listeners to existing markup
-hydrate(<Counter />, app)
+const app = document.getElementById( "app" );
+ReactDOM.render( <Counter />, app );
 ```
 
 In the SSR context the server has already rendered the `Counter` component. It already exists in the DOM. The `react-dom` package provides the `hydrate` method to "hydrate a container whose HTML contents were rendered by `ReactDOMServer`." Simply put `hydrate` attaches event listeners to existing markup in a container. The only thing that changes from the code above is replacing `render` with `hydrate`:
