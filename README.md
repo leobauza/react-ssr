@@ -2,17 +2,17 @@
 
 ## What are we building here?
 
-The end result of this app is a counter that is initially rendered server side and then updated with client-side JavaScript.
+The end result of this app is a counter that is initially rendered server-side and then updated with client-side JavaScript.
 
-The goal is to minimize the parts needed to get the app up and running. Webpack is used to compile the client-side React code. Server side code is compiled on the fly with babel register. To run the app first start a webpack watch process with `yarn start` and then start the node server with `yarn server`.
+The goal is to minimize the parts needed to get the app up and running. Webpack is used to compile the client-side React code. Server-side code is compiled on the fly with babel register. To run the app first start a webpack watch process with `yarn start` and then start the node server with `yarn server`.
 
-This represents a minimal example of a server side rendered (SSR) React app. This app is not production ready, it's not the only way to set up SSR, and is meant as an introduction to the concept of SSR React.
+This represents a minimal example of a server-side rendered (SSR) React app. This app is not production ready, it's not the only way to set up SSR, and is meant as an introduction to the concept of SSR React.
 
 There are more robust solutions that make working with SSR code easier, and solve many of the problems that an SSR app would run into. Some frameworks to explore are [NEXT.js](https://nextjs.org/) and [Gatsby](https://www.gatsbyjs.org/).
 
 ## Prerequisites
 
-This requires basic understanding of [yarn](https://yarnpkg.com/en/), [node](https://nodejs.org/en/), [Webpack](https://webpack.js.org/), [React](https://reactjs.org/), and [Babel](https://babeljs.io/). This app also uses [Express.js](https://expressjs.com/) to start a server and server side render the app with node.js.
+This requires basic understanding of [yarn](https://yarnpkg.com/en/), [node](https://nodejs.org/en/), [Webpack](https://webpack.js.org/), [React](https://reactjs.org/), and [Babel](https://babeljs.io/). This app also uses [Express.js](https://expressjs.com/) to start a server and server-side render the app with node.js.
 
 In this app Webpack (using babel-loader) is used to transform the latest JavaScript in the `client.js` file into a bundle that the `server.js` file includes using `<script src="./assets/app.bundle.js"></script>`. Babel is also used in `index.js` via `require('@babel/register')` to avoid the need of a more complex Webapck setup. `@babel/register` transforms `server.js` to JavaScript that can be understood by Node.js. Both `@babel/register` and the Webpack configuration use the `.babelrc` file to configure babel transformations.
 
@@ -20,7 +20,7 @@ In this app Webpack (using babel-loader) is used to transform the latest JavaScr
 
 ## The Parts
 
-This basic setup of a server side rendered React app includes 4 files. The `client`, the `server`, a `component` that will be rendered on the `server` and then updated by the `client`, and an entry point. We will also need a `webpack.config.js` file to compile the `client` code.
+This basic setup of a server-side rendered React app includes 4 files. The `client`, the `server`, a `component` that will be rendered on the `server` and then updated by the `client`, and an entry point. We will also need a `webpack.config.js` file to compile the `client` code.
 
 ## The Component
 
@@ -98,7 +98,7 @@ app.use(express.static(path.resolve(__dirname, '../public')))
  */
 app.get('/*', (req, res) => {
   /**
-   * Convert JSX code to a HTML string that can be rendered server side with
+   * Convert JSX code to a HTML string that can be rendered server-side with
    * `renderToString` a method provided by ReactDOMServer
    *
    * This sets up the app so that calling ReactDOM.hydrate() will preserve the
@@ -148,19 +148,19 @@ function htmlTemplate(reactDom) {
 }
 ```
 
-The most importants things to note are that `renderToString` converts the component to an HTML string, we are only outputting html, and `<script src="./assets/app.bundle.js"></script>` is a webpack bundle of the compiled `client.js` code.
+The most important things to note are that `renderToString` converts the component to an HTML string, we are only outputting html, and `<script src="./assets/app.bundle.js"></script>` is a webpack bundle of the compiled `client.js` code.
 
 ## The Client
 
-On a standard client-side app (CSA) the `render` method provided by the `react-dom` package is probably being used to render a React element into the specified containe in the DOM. It would look something like this:
+On a standard client-side app (CSA) the `render` method provided by the `react-dom` package is probably being used to render a React element into the specified container in the DOM. It would look something like this:
 
 ```js
-import React from "react";
-import ReactDOM from "react-dom";
-import Counter from "./components/Counter";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Counter from './components/Counter'
 
-const app = document.getElementById( "app" );
-ReactDOM.render( <Counter />, app );
+const app = document.getElementById( 'app' )
+ReactDOM.render( <Counter />, app )
 ```
 
 In the SSR context the server has already rendered the `Counter` component. It already exists in the DOM. The `react-dom` package provides the `hydrate` method to "hydrate a container whose HTML contents were rendered by `ReactDOMServer`." Simply put `hydrate` attaches event listeners to existing markup in a container. The only thing that changes from the code above is replacing `render` with `hydrate`:
@@ -177,7 +177,7 @@ hydrate(<Counter />, app)
 
 ## The Entry Point
 
-In this setup there is a `index.js` file at the root of the project that `requires('sever.js')` and uses [@babel/register](https://babeljs.io/docs/en/babel-register) to compile files on the fly.
+The `index.js` file at the root of the project `requires('sever.js')` and uses [@babel/register](https://babeljs.io/docs/en/babel-register) to compile files on the fly.
 
 The `index.js` file is small:
 
@@ -190,7 +190,7 @@ require('./src/server')
 
 ## Compiling `client.js`
 
-The entry point will take care of compiler server side code, but what about our client-side code?
+The entry point will take care of compiling server-side code, but what about our client-side code?
 
 Earlier in the `server.js` code I pointed out this line:
 
@@ -198,7 +198,7 @@ Earlier in the `server.js` code I pointed out this line:
 <script src="./assets/app.bundle.js"></script>
 ```
 
-This adds script tag references the cient-sde code, however we can't just load the `client.js`. First it needs to be compiled to something browser can understand. The webpack configuration file below takes the `client.js` file and converts it to the `app.bundle.js` file the app will use.
+This adds script tag references the cient-side code, however we can't just load the `client.js`. First it needs to be compiled to something the browser can understand. The webpack configuration file below takes the `client.js` file and converts it to the `app.bundle.js` file the app will use.
 
 ```js
 const path = require('path')
