@@ -304,6 +304,8 @@ Assuming the above structure and that all the packages have been installed we ca
 
 Then in a terminal run `yarn start` and then `yarn server`. The first script will compile the `client.js` code and create the `public` folder containing `assets/app.bundle.js`. The second script will start the `node.js` server. Navigate to `localhost:3000` (this is where we told our `server.js` to start the server) and you should see the counter.
 
-## Conclusion
+## What Now?
 
-@TODO write conclusion
+Hopefully this explains some of what is going on in with server-side rendered React. With just a few tweaks we were able to server-side render our component. However, this was a very basic example for more robust app you may want to consider a framework to help you out, as mentioned into the intro some frameworks to check out are: [Gatsby](https://www.gatsbyjs.org/) and [Next](https://nextjs.org/). Gatsby and Next offer features like static site generation, automatic code splitting, filesystem based routing, hot code reloading, and more.
+
+If you have any questions, suggestions, or notice any bugs don't hesitate to make an issue on [the repo](https://github.com/leobauza/react-ssr/tree/react-ssr-wo-webpack) and be sure to reference the `react-ssr-wo-webpack` branch.
