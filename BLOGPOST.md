@@ -1,6 +1,6 @@
-# Server rendered React using babel register and no webpack bundling for the server
+# How do I Server Side Render my Sweet Counter Component?
 
-@TODO delete all this and write propper README...with link to blog post
+> A basic setup to learn how to Server Side Render a React component
 
 ## What are we building here?
 
@@ -12,15 +12,17 @@ This represents a minimal example of a server-side rendered (SSR) React app. Thi
 
 There are more robust solutions that make working with SSR code easier, and solve many of the problems that an SSR app would run into. Some frameworks to explore are [NEXT.js](https://nextjs.org/) and [Gatsby](https://www.gatsbyjs.org/).
 
+All the code can be found on [this repo](https://github.com/leobauza/react-ssr/tree/react-ssr-wo-webpack) with (hopefully) enough comments to explain what is going on in the code.
+
 ## Prerequisites
 
-This requires basic understanding of [yarn](https://yarnpkg.com/en/), [node](https://nodejs.org/en/), [Webpack](https://webpack.js.org/), [React](https://reactjs.org/), and [Babel](https://babeljs.io/). This app also uses [Express.js](https://expressjs.com/) to start a server and server-side render the app with node.js.
+This blog post requires basic understanding of [yarn](https://yarnpkg.com/en/), [node](https://nodejs.org/en/), [Webpack](https://webpack.js.org/), [React](https://reactjs.org/), and [Babel](https://babeljs.io/). This app also uses [Express.js](https://expressjs.com/) to start a server and server-side render the app with node.js.
 
 In this app Webpack (using babel-loader) is used to transform the latest JavaScript in the `client.js` file into a bundle that the `server.js` file includes using `<script src="./assets/app.bundle.js"></script>`. Babel is also used in `index.js` via `require('@babel/register')` to avoid the need of a more complex Webapck setup. `@babel/register` transforms `server.js` to JavaScript that can be understood by Node.js. Both `@babel/register` and the Webpack configuration use the `.babelrc` file to configure babel transformations.
 
 ## The Parts
 
-This basic setup of a server-side rendered React app includes 4 files. The `client`, the `server`, a `component` that will be rendered on the `server` and then updated by the `client`, and an entry point. We will also need a `webpack.config.js` file to compile the `client` code.
+As mentioned above, this basic setup of a server-side rendered React app includes 5 files. The (1)`client`, the (2)`server`, a (3)`component` that will be rendered on the `server` and then updated by the `client`, and an entry point. We will also need a (4)`webpack.config.js` file to compile the `client` code, and a (5)`.babelrc` file with some configurations for the babel-loader used in the Webpack configuration.
 
 ## The Component
 
@@ -268,7 +270,7 @@ package.json
 webpack.config.js
 ```
 
-The project dependencies are these:
+The project dependencies are these (the best way to get these is to clone [the repo](https://github.com/leobauza/react-ssr/tree/react-ssr-wo-webpack)):
 
 ```json
 "dependencies": {
@@ -302,3 +304,6 @@ Assuming the above structure and that all the packages have been installed we ca
 
 Then in a terminal run `yarn start` and then `yarn server`. The first script will compile the `client.js` code and create the `public` folder containing `assets/app.bundle.js`. The second script will start the `node.js` server. Navigate to `localhost:3000` (this is where we told our `server.js` to start the server) and you should see the counter.
 
+## Conclusion
+
+@TODO write conclusion
