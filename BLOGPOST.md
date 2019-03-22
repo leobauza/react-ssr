@@ -6,7 +6,7 @@
 
 The end result of this app is a counter that is initially rendered server-side and then updated with client-side JavaScript.
 
-The goal is to minimize the parts needed to get the app up and running. Webpack is used to compile the client-side React code. Server-side code is compiled on the fly with babel register. To run the app first start a webpack watch process with `yarn start` and then start the node server with `yarn server`.
+The goal is to minimize the parts needed to get the app up and running. Webpack is used to compile the client-side React code. Server-side code is compiled on the fly with [`@babel/register`](https://babeljs.io/docs/en/babel-register). To run the app first start a webpack watch process with `yarn start` and then start the node server with `yarn server`.
 
 This represents a minimal example of a server-side rendered (SSR) React app. This app is not production ready, it's not the only way to set up SSR, and is meant as an introduction to the concept of SSR React.
 
@@ -22,11 +22,18 @@ In this app Webpack (using babel-loader) is used to transform the latest JavaScr
 
 ## The Parts
 
-As mentioned above, this basic setup of a server-side rendered React app includes 5 files. The (1)`client`, the (2)`server`, a (3)`component` that will be rendered on the `server` and then updated by the `client`, and an entry point. We will also need a (4)`webpack.config.js` file to compile the `client` code, and a (5)`.babelrc` file with some configurations for the babel-loader used in the Webpack configuration.
+As mentioned above, this basic setup of a server-side rendered React app includes 6 files.
+
+1. The `client`
+2. The `server`
+3. A `component` that will be rendered server-die and then updated by client-side
+4. An entry point
+5. We will also need a `webpack.config.js` file to compile the `client` code
+6. And a `.babelrc` file with some configurations for the babel-loader used by Webpack and by `@babel/register`
 
 ## The Component
 
-A `Counter` component defined in `/src/components/Counter.js`. The `Counter` renders a `h1` tag that shows where the counter is at.
+A `Counter` component defined in `/src/components/Counter.js`. The `Counter` renders a `h1` tag that shows the current count.
 
 ```js
 import React, { Component } from 'react'
@@ -179,7 +186,7 @@ hydrate(<Counter />, app)
 
 ## The Entry Point
 
-The `index.js` file at the root of the project `requires('sever.js')` and uses [@babel/register](https://babeljs.io/docs/en/babel-register) to compile files on the fly.
+The `index.js` file at the root of the project `requires('sever.js')` and uses `@babel/register` to compile files on the fly.
 
 The `index.js` file is small:
 
@@ -306,6 +313,6 @@ Then in a terminal run `yarn start` and then `yarn server`. The first script wil
 
 ## What Now?
 
-Hopefully this explains some of what is going on in with server-side rendered React. With just a few tweaks we were able to server-side render our component. However, this was a very basic example for more robust app you may want to consider a framework to help you out, as mentioned into the intro some frameworks to check out are: [Gatsby](https://www.gatsbyjs.org/) and [Next](https://nextjs.org/). Gatsby and Next offer features like static site generation, automatic code splitting, filesystem based routing, hot code reloading, and more.
+Hopefully this explains some of what is going on in with server-side rendered React. This is a very basic example, for more robust apps you may want to consider a framework to help you out, as mentioned in the intro some frameworks to check out are: [Gatsby](https://www.gatsbyjs.org/) and [Next](https://nextjs.org/). Gatsby and Next offer features like static site generation, automatic code splitting, filesystem based routing, hot code reloading, and more.
 
 If you have any questions, suggestions, or notice any bugs don't hesitate to make an issue on [the repo](https://github.com/leobauza/react-ssr/tree/react-ssr-wo-webpack) and be sure to reference the `react-ssr-wo-webpack` branch.
