@@ -1,6 +1,6 @@
 # Server rendered React using babel register and no webpack bundling for the server
 
-This is a companion repo for a blog post on the [viget.com blog]([https://www.viget.com/articles/](https://www.viget.com/articles/how-do-i-server-side-render-my-sweet-counter-component/)). [That same blog post exists in this repo](https://github.com/leobauza/react-ssr/blob/react-ssr-wo-webpack/BLOGPOST.md).
+This is a companion repo for a blog post on the [viget.com blog](https://www.viget.com/articles/how-do-i-server-side-render-my-sweet-counter-component/). [That same blog post exists in this repo](https://github.com/leobauza/react-ssr/blob/react-ssr-wo-webpack/BLOGPOST.md).
 
 > This project assume node is already installed. There is an .nvmrc file that with the specific version of node used to develop this project. If you are using [nvm](https://github.com/creationix/nvm) to manage node version you can run `nvm use` to use the current version if it is already installed, or `nvm install` to install it and then run `nvm use` to use it.
 
