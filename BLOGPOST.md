@@ -73,7 +73,7 @@ The important parts to understand are:
 2. The component renders an `h1` tag with the text `Count: <the-current-count>`
 3. Increasing the count doesn't start until _after_ the `client` code runs
 
-The `Counter` component is initially rendered by the `server`. The `client` side JavaScript then attaches itself (hydrates) and updates the state. In other words the server outputs:
+The `Counter` component is initially rendered by the `server`. The `client` side JavaScript then attaches itself (hydrates) and updates the state. In other words the `server` outputs:
 
 ```html
 ...
@@ -85,7 +85,7 @@ After the client-side JavaScript has loaded it can update the count every second
 
 ## The Server
 
-[Express](https://expressjs.com/) is a fast way to get a Node.js app running. The server's job is to take the `Counter` component, convert it to html, and render it for the client-side code to take over control. Here is all the code needed to set up the server with comments.
+[Express](https://expressjs.com/) is a fast way to get a Node.js app running. The server's job is to take the `Counter` component, convert it to html, and render it for the client-side code to take over control. Here is all the code needed to set up the server.
 
 ```js
 import express from 'express'
@@ -159,7 +159,11 @@ function htmlTemplate(reactDom) {
 }
 ```
 
-The most important things to note are that `renderToString` converts the component to an HTML string, we are only outputting html, and `<script src="./assets/app.bundle.js"></script>` is a webpack bundle of the compiled `client.js` code.
+The most important things to note are:
+
+1. `renderToString` converts the component to an HTML string
+2. we are only outputting html
+3. `<script src="./assets/app.bundle.js"></script>` is a webpack bundle of the compiled `client.js` code.
 
 ## The Client
 
@@ -209,7 +213,7 @@ Earlier in the `server.js` code I pointed out this line:
 <script src="./assets/app.bundle.js"></script>
 ```
 
-This adds script tag references the cient-side code, however we can't just load the `client.js`. First it needs to be compiled to something the browser can understand. The webpack configuration file below takes the `client.js` file and converts it to the `app.bundle.js` file the app will use.
+This adds script tag references the cient-side code, however we can't just load `client.js`. First it needs to be compiled to something the browser can understand. The webpack configuration file below takes the `client.js` file and converts it to the `app.bundle.js` file the app will use.
 
 ```js
 const path = require('path')
