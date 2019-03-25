@@ -6,7 +6,9 @@
 
 The end result of this app is a counter that is initially rendered server-side and then updated with client-side JavaScript.
 
-The goal is to minimize the parts needed to get the app up and running. Webpack is used to compile the client-side React code. Server-side code is compiled on the fly with [`@babel/register`](https://babeljs.io/docs/en/babel-register). To run the app first start a webpack watch process with `yarn start` and then start the node server with `yarn server`.
+[image]
+
+The goal is to minimize the parts needed to get an app up and running. Webpack is used to compile the client-side React code. Server-side code is compiled on the fly with [`@babel/register`](https://babeljs.io/docs/en/babel-register). When everything is ready the app runs by first compiling client-side code with `yarn start`, starting a node server with `yarn server`, and opening the browser to `localhost:3000`.
 
 This represents a minimal example of a server-side rendered (SSR) React app. This app is not production ready, it's not the only way to set up SSR, and is meant as an introduction to the concept of SSR React.
 
